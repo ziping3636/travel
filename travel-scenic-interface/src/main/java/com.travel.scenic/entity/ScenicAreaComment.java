@@ -34,12 +34,12 @@ public class ScenicAreaComment implements Serializable {
     /**
      * 景区id
      */
-    private Integer scenic_area_id;
+    private Integer scenicAreaId;
 
     /**
      * 用户id
      */
-    private Integer user_id;
+    private Integer userId;
 
     /**
      * 内容

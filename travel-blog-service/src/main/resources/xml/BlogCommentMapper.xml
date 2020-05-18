@@ -5,8 +5,8 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.travel.blog.entity.BlogComment">
         <id column="id" property="id" />
-        <result column="blog_id" property="blog_id" />
-        <result column="user_id" property="user_id" />
+        <result column="blog_id" property="blogId" />
+        <result column="user_id" property="userId" />
         <result column="content" property="content" />
         <result column="created" property="created" />
         <result column="img" property="img" />
@@ -16,5 +16,16 @@
     <sql id="Base_Column_List">
         id, blog_id, user_id, content, created, img
     </sql>
+    
+    <select id="getBlogsById" resultMap="BaseResultMap">
+        SELECT
+            a.*, b.username
+        FROM
+            t_blog_comment a
+        LEFT JOIN t_user b ON a.blog_id = 1
+        AND a.user_id = b.id
+        GROUP BY
+            a.id
+    </select>
 
 </mapper>

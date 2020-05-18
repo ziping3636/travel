@@ -128,11 +128,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
+
+
+        <!-- 景区接口 -->
         <dependency>
             <groupId>com.travel</groupId>
-            <artifactId>travel-user-interface</artifactId>
+            <artifactId>travel-scenic-interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+
     </dependencies>
 
     <build>

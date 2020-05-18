@@ -1,10 +1,13 @@
 package com.travel.blog.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.time.LocalDate;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -51,22 +54,27 @@ public class Blog implements Serializable {
     /**
      * 获赞数量 (被顶数量）
      */
-    private Integer praise_num;
+    private Integer praiseNum;
 
     /**
      * 阅读数量
      */
-    private Integer read_num;
+    private Integer readNum;
 
     /**
      * 收藏数量
      */
-    private Integer collection_num;
+    private Integer collectionNum;
 
     /**
      * 分享数量
      */
-    private Integer share_num;
+    private Integer shareNum;
+
+    //博客的评论
+    //数据库中不存在
+    @TableField(exist = false)
+    private List<BlogComment> blogCommentList;
 
 
 }

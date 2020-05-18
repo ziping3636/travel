@@ -1,5 +1,6 @@
 package com.travel.blog.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -34,12 +35,12 @@ public class BlogComment implements Serializable {
     /**
      * 文章ID
      */
-    private Integer blog_id;
+    private Integer blogId;
 
     /**
      * 用户ID
      */
-    private Integer user_id;
+    private Integer userId;
 
     /**
      * 内评论容
@@ -55,6 +56,10 @@ public class BlogComment implements Serializable {
      * 图片
      */
     private String img;
+
+    //关于这条评论的用户信息
+    @TableField(exist = false)
+    private String username;
 
 
 }
