@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 /**
  * <p>
@@ -77,13 +82,29 @@ public class UserController {
      * @param id
      * @return
      */
-    @RequestMapping("findById")
+    @RequestMapping("/findById")
     public ResultEntity findById(Integer id) {
         User byId = iUserService.findById(id);
         if (byId != null) {
             return ResultEntity.ok(byId);
         }
         return ResultEntity.error("没有查到具体信息");
+    }
+
+    @RequestMapping("/upload")
+    public ResultEntity upload(MultipartFile file) {
+        try {
+            if (file!= null &&!file.isEmpty()) {
+                String path = "d:\\pic\\";
+                String newFileName = UUID.randomUUID()+ "_" + file.getOriginalFilename();
+                File file1 = new File(path, newFileName);
+                file.transferTo(file1);
+                return ResultEntity.ok("http://localhost:92/img/"+newFileName);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ResultEntity.error("上传失败");
     }
 }
 

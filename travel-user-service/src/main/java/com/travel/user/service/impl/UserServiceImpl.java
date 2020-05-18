@@ -5,11 +5,14 @@ import com.travel.user.mapper.UserMapper;
 import com.travel.user.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import sun.security.provider.MD5;
 
 import java.security.MessageDigest;
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p>
@@ -24,6 +27,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     /**
      * 注册/添加用户
@@ -48,7 +54,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public User login(User user) {
         // 密码加密
         user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
-        return userMapper.login(user);
+        // 从 redis 中查询
+        User travelUser = (User) redisTemplate.opsForValue().get("travel_user");
+        if (travelUser == null) {
+            User login = userMapper.login(user);
+            // 存入redis 并设置过期时间
+            redisTemplate.opsForValue().set("travel_user", login, 30, TimeUnit.MINUTES);
+            return login;
+        }
+        return travelUser;
     }
 
     /**
@@ -59,7 +73,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      */
     @Override
     public int updateUserById(User user) {
-        if (user.getPassword() != null && !"".equals(user.getPassword())){
+        if (user.getPassword() != null && !"".equals(user.getPassword())) {
             // 密码加密
             user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
         }
@@ -68,6 +82,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     /**
      * 根据id查询
+     *
      * @param id
      * @return
      */
