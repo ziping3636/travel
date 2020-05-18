@@ -13,4 +13,32 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserService extends IService<User> {
 
+    /**
+     * 注册/添加用户
+     * @param user
+     * @return
+     */
+    int regist(User user);
+
+    /**
+     * 登录
+     * @param user
+     * @return
+     */
+    User login(User user);
+
+    /**
+     * 根据id修改用户信息
+     * @param user
+     * @return
+     */
+    int updateUserById(User user);
+
+
+    /**
+     * 根据id查询
+     * @param id
+     * @return
+     */
+    User findById(Integer id);
 }
