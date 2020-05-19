@@ -55,13 +55,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         // 密码加密
         user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
         // 从 redis 中查询
-        User travelUser = (User) redisTemplate.opsForValue().get("travel_user");
+        User travelUser = (User) redisTemplate.opsForValue().get(user.getUsername());
         if (travelUser == null) {
+            System.out.println("mysql  -=-");
             User login = userMapper.login(user);
             // 存入redis 并设置过期时间
-            redisTemplate.opsForValue().set("travel_user", login, 30, TimeUnit.MINUTES);
+            redisTemplate.opsForValue().set(user.getUsername(), login, 30, TimeUnit.MINUTES);
             return login;
         }
+        System.out.println("redis  -=-");
         return travelUser;
     }
 
