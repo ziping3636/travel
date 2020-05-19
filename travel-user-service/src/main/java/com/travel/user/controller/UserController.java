@@ -48,8 +48,10 @@ public class UserController {
     public Page<User> selectAllUser(@RequestParam(defaultValue = "1") int current, @RequestParam(defaultValue = "5") int size, User user) {
         Page page = new Page(current, size);
         QueryWrapper wrapper = new QueryWrapper();
-        if (user.getName() != null && !"".equals(user.getName())) {
-            wrapper.like("name", user.getName());
+        if (user != null) {
+            if (user.getName() != null && !"".equals(user.getName())) {
+                wrapper.like("name", user.getName());
+            }
         }
         return iUserService.page(page, wrapper);
     }
