@@ -38,7 +38,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/regist")
-    public ResultEntity regist(User user) {
+    public ResultEntity regist(@RequestBody User user) {
         int regist = iUserService.regist(user);
         if (regist > 0) {
             return ResultEntity.ok("注册成功");
