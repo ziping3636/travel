@@ -41,7 +41,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public int regist(User user) {
         // 密码加密
         user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
-        return userMapper.regist(user);
+        return userMapper.insert(user);
     }
 
     /**
@@ -77,7 +77,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             // 密码加密
             user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
         }
-        return userMapper.updateUserById(user);
+        return userMapper.updateById(user);
     }
 
     /**
@@ -88,6 +88,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
      */
     @Override
     public User findById(Integer id) {
-        return userMapper.findById(id);
+        return userMapper.selectById(id);
     }
 }
