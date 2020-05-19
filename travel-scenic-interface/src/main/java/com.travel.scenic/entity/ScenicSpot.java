@@ -31,11 +31,11 @@ public class ScenicSpot implements Serializable {
 
     private String type;
 
-    private Integer user_id;
+    private Integer userId;
 
-    private Integer area_id;
+    private Integer areaId;
 
-    private Integer scenic_area_id;
+    private Integer scenicAreaId;
 
     private String img;
 

@@ -51,17 +51,17 @@ public class ScenicArea implements Serializable {
     /**
      * 省
      */
-    private Integer province_id;
+    private Integer provinceId;
 
     /**
      * 市
      */
-    private Integer city_id;
+    private Integer cityId;
 
     /**
      * 县
      */
-    private Integer county_id;
+    private Integer countyId;
 
 
 }

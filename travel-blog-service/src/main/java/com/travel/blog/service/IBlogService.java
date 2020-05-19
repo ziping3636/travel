@@ -3,6 +3,8 @@ package com.travel.blog.service;
 import com.travel.blog.entity.Blog;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * InnoDB free: 5120 kB 服务类
@@ -13,4 +15,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IBlogService extends IService<Blog> {
 
+    void delByArray(Integer[] ids) throws Exception;
+
+    Blog getBlogsById(Integer id);
 }
