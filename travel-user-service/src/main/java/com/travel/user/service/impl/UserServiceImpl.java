@@ -62,9 +62,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             // 存入redis 并设置过期时间
             redisTemplate.opsForValue().set(user.getUsername(), login, 30, TimeUnit.MINUTES);
             return login;
+        } else {
+            if (travelUser.getPassword().equals(user.getPassword())) {
+
+                return travelUser;
+            }
+            System.out.println("redis  -=-");
+            return null;
         }
-        System.out.println("redis  -=-");
-        return travelUser;
     }
 
     /**
