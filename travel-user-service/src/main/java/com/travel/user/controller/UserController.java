@@ -1,6 +1,9 @@
 package com.travel.user.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.travel.user.config.ResultEntity;
 import com.travel.user.entity.User;
 import com.travel.user.service.IUserService;
@@ -9,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.UUID;
 
 /**
@@ -30,6 +35,24 @@ public class UserController {
 
     @Autowired
     private IUserService iUserService;
+
+    /**
+     * 查询所有用户
+     *
+     * @param current
+     * @param size
+     * @param user
+     * @return
+     */
+    @RequestMapping("/list")
+    public Page<User> selectAllUser(@RequestParam(defaultValue = "1") int current, @RequestParam(defaultValue = "5") int size, User user) {
+        Page page = new Page(current, size);
+        QueryWrapper wrapper = new QueryWrapper();
+        if (user.getName() != null && !"".equals(user.getName())) {
+            wrapper.like("name", user.getName());
+        }
+        return iUserService.page(page, wrapper);
+    }
 
     /**
      * 用户注册/添加用户
@@ -94,12 +117,12 @@ public class UserController {
     @RequestMapping("/upload")
     public ResultEntity upload(MultipartFile file) {
         try {
-            if (file!= null &&!file.isEmpty()) {
+            if (file != null && !file.isEmpty()) {
                 String path = "d:\\pic\\";
-                String newFileName = UUID.randomUUID()+ "_" + file.getOriginalFilename();
+                String newFileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
                 File file1 = new File(path, newFileName);
                 file.transferTo(file1);
-                return ResultEntity.ok("http://localhost:92/img/"+newFileName);
+                return ResultEntity.ok("http://localhost:92/img/" + newFileName);
             }
         } catch (IOException e) {
             e.printStackTrace();
