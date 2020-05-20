@@ -67,6 +67,11 @@ public class ScenicArea implements Serializable {
      */
     private Integer countyId;
 
+    /**
+     *  图片
+     */
+    private String pic;
+
     @TableField(exist = false)
     private String provinceName;
 
