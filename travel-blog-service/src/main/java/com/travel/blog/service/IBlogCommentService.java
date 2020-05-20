@@ -1,5 +1,8 @@
 package com.travel.blog.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.travel.blog.entity.Blog;
 import com.travel.blog.entity.BlogComment;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -17,4 +20,6 @@ public interface IBlogCommentService extends IService<BlogComment> {
 
     //根据博客ID 查询  博客的评论
     List<BlogComment> getBlogCommentByBlogId(Integer blogId);
+
+    IPage<Blog> selectPageVo(Page page, Integer blogId);
 }

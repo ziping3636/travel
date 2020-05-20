@@ -28,4 +28,14 @@
             a.id
     </select>
 
+    <select id="selectPageVo" resultMap="BaseResultMap">
+        SELECT
+            a.*, b.username
+        FROM
+            t_blog_comment a
+        LEFT JOIN t_user b ON a.blog_id = #{value}
+        AND a.user_id = b.id
+        GROUP BY
+            a.id
+    </select>
 </mapper>

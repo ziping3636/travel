@@ -1,6 +1,8 @@
 package com.travel.blog.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.travel.blog.config.ResultEntity;
 import com.travel.blog.entity.BlogComment;
 import com.travel.blog.service.IBlogCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +31,16 @@ public class BlogCommentController {
     private IBlogCommentService iBlogCommentService;
 
     @RequestMapping("list")
-    public List<BlogComment> list(){
-        return iBlogCommentService.list();
+    public ResultEntity list(Page page,Integer blogId){
+        return ResultEntity.ok(iBlogCommentService.selectPageVo(page,blogId));
     }
 
     @PostMapping("insert")
     public boolean save(@RequestBody BlogComment blogComment){
         return iBlogCommentService.save(blogComment);
     }
+
+
 
 }
 

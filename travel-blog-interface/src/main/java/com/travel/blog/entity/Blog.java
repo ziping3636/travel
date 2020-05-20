@@ -32,6 +32,17 @@ public class Blog implements Serializable {
     private Integer id;
 
     /**
+     * 作者ID
+     */
+    private Integer uid;
+
+    /**
+     * 作者姓名
+     */
+    @TableField(exist = false)
+    private String username;
+
+    /**
      * 标题
      */
     private String title;

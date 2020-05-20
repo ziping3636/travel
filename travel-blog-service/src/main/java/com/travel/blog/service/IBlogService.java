@@ -1,5 +1,7 @@
 package com.travel.blog.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.travel.blog.entity.Blog;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -18,4 +20,6 @@ public interface IBlogService extends IService<Blog> {
     void delByArray(Integer[] ids) throws Exception;
 
     Blog getBlogsById(Integer id);
+
+    IPage<Blog> selectPageVo(Page page);
 }
