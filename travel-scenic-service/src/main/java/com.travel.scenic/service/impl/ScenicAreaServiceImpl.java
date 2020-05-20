@@ -1,9 +1,11 @@
 package com.travel.scenic.service.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.travel.scenic.entity.ScenicArea;
 import com.travel.scenic.mapper.ScenicAreaMapper;
 import com.travel.scenic.service.IScenicAreaService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +19,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ScenicAreaServiceImpl extends ServiceImpl<ScenicAreaMapper, ScenicArea> implements IScenicAreaService {
 
+    @Autowired
+    private ScenicAreaMapper scenicAreaMapper;
+
+    @Override
+    public Page selectAll(Page page, ScenicArea scenicArea) {
+        return scenicAreaMapper.selectAll(page, scenicArea);
+    }
 }

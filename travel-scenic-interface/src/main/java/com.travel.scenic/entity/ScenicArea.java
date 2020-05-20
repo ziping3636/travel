@@ -1,10 +1,14 @@
 package com.travel.scenic.entity;
 
 import java.math.BigDecimal;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,7 +27,7 @@ import lombok.experimental.Accessors;
 @TableName("t_scenic_area")
 public class ScenicArea implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * 景区id
@@ -63,5 +67,12 @@ public class ScenicArea implements Serializable {
      */
     private Integer countyId;
 
+    @TableField(exist = false)
+    private String provinceName;
 
+    @TableField(exist = false)
+    private String cityName;
+
+    @TableField(exist = false)
+    private String countyName;
 }

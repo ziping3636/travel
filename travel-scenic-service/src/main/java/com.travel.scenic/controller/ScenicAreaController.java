@@ -30,16 +30,8 @@ public class ScenicAreaController {
     @RequestMapping("list")
     public Page selectAll(@RequestParam(defaultValue = "1") int current, @RequestParam(defaultValue = "10") int size, ScenicArea scenicArea) {
         Page page = new Page(current, size);
-        QueryWrapper wrapper = new QueryWrapper();
-        if (scenicArea != null) {
-            if (scenicArea.getName() != null && !"".equals(scenicArea.getName())) {
-                wrapper.like("name", scenicArea.getName());
-            }
-            if (scenicArea.getStar() != null) {
-                wrapper.eq("star", scenicArea.getStar());
-            }
-        }
-        return iScenicAreaService.page(page, wrapper);
+
+        return iScenicAreaService.selectAll(page, scenicArea);
     }
 }
 
