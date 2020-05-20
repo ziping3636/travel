@@ -1,6 +1,8 @@
 package com.travel.blog.controller;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.netflix.discovery.converters.Auto;
 import com.travel.blog.config.ResultEntity;
 import com.travel.blog.entity.Blog;
@@ -43,8 +45,8 @@ public class BlogController {
      * @return
      */
     @RequestMapping("list")
-    public List<Blog> list(){
-        return iBlogService.list();
+    public ResultEntity list(Page page){
+        return ResultEntity.ok(iBlogService.selectPageVo(page));
     }
 
     /**

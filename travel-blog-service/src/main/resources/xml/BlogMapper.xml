@@ -5,6 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.travel.blog.entity.Blog">
         <id column="id" property="id" />
+        <result column="uid" property="uid" />
         <result column="title" property="title" />
         <result column="content" property="content" />
         <result column="img" property="img" />
@@ -17,11 +18,17 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, title, content, img, created, praise_num, read_num, collection_num, share_num
+        id, uid, title, content, img, created, praise_num, read_num, collection_num, share_num
     </sql>
     
     <select id="getBlogsById" resultMap="BaseResultMap">
-        SELECT * FROM t_blog a where a.id = #{value}
+        SELECT a.*,b.username FROM t_blog a LEFT JOIN t_user b on a.uid = b.id where a.id = #{value}
     </select>
+
+    <select id="selectPageVo" resultMap="BaseResultMap">
+        SELECT a.*,b.username FROM t_blog a LEFT JOIN t_user b on a.uid = b.id
+    </select>
+
+
 
 </mapper>

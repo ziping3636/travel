@@ -1,5 +1,8 @@
 package com.travel.blog.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.travel.blog.entity.Blog;
 import com.travel.blog.entity.BlogComment;
 import com.travel.blog.mapper.BlogCommentMapper;
 import com.travel.blog.mapper.BlogMapper;
@@ -27,5 +30,10 @@ public class BlogCommentServiceImpl extends ServiceImpl<BlogCommentMapper, BlogC
     @Override
     public List<BlogComment> getBlogCommentByBlogId(Integer blogId) {
         return blogCommentMapper.getBlogsById(blogId);
+    }
+
+    @Override
+    public IPage<Blog> selectPageVo(Page page, Integer blogId) {
+        return blogCommentMapper.selectPageVo(page, blogId);
     }
 }

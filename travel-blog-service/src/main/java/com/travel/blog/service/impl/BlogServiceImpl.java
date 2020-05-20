@@ -1,6 +1,8 @@
 package com.travel.blog.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.travel.blog.entity.Blog;
 import com.travel.blog.mapper.BlogMapper;
 import com.travel.blog.service.IBlogService;
@@ -43,6 +45,11 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
     @Override
     public Blog getBlogsById(Integer id) {
         return blogMapper.getBlogsById(id);
+    }
+
+    @Override
+    public IPage<Blog> selectPageVo(Page page) {
+        return blogMapper.selectPageVo(page);
     }
 
 
