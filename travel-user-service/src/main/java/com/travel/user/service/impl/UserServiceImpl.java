@@ -40,7 +40,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public int regist(User user) {
         // 密码加密
-        user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+        if (user!=null) {
+            if (user.getPassword() != null && !"".equals(user.getPassword())) {
+                user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+            }
+        }
+        user.setIsMark(1);
         return userMapper.insert(user);
     }
 
