@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/travel.iml" filepath="$PROJECT_DIR$/.idea/travel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/travel-blog-interface/travel-blog-interface.iml" filepath="$PROJECT_DIR$/travel-blog-interface/travel-blog-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/travel-blog-service/travel-blog-service.iml" filepath="$PROJECT_DIR$/travel-blog-service/travel-blog-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/travel-hotel-interface/travel-hotel-interface.iml" filepath="$PROJECT_DIR$/travel-hotel-interface/travel-hotel-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/travel-hotel-service/travel-hotel-service.iml" filepath="$PROJECT_DIR$/travel-hotel-service/travel-hotel-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/travel-scenic-interface/travel-scenic-interface.iml" filepath="$PROJECT_DIR$/travel-scenic-interface/travel-scenic-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/travel-scenic-service/travel-scenic-service.iml" filepath="$PROJECT_DIR$/travel-scenic-service/travel-scenic-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/travel-user-interface/travel-user-interface.iml" filepath="$PROJECT_DIR$/travel-user-interface/travel-user-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/travel-user-service/travel-user-service.iml" filepath="$PROJECT_DIR$/travel-user-service/travel-user-service.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.travel.scenic.mapper.ScenicAreaMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.travel.scenic.entity.ScenicArea">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="info" property="info"/>
+        <result column="price" property="price"/>
+        <result column="star" property="star"/>
+        <result column="province_id" property="provinceId"/>
+        <result column="city_id" property="cityId"/>
+        <result column="county_id" property="countyId"/>
+        <result column="pic" property="pic"/>
+
+        <result column="provinceName" property="provinceName"/>
+        <result column="cityName" property="cityName"/>
+        <result column="countyName" property="countyName"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, info, price, star, province_id, city_id, county_id
+    </sql>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+            sa.*, p.name provinceName,
+            c.name cityName,
+            d.name countyName
+        FROM
+            t_scenic_area sa
+        LEFT JOIN t_district p ON sa.province_id = p.id
+        LEFT JOIN t_district c ON sa.city_id = c.id
+        LEFT JOIN t_district d ON sa.county_id = d.id
+        <where>
+            <if test="scenicArea != null">
+                <if test="scenicArea.name!= null and scenicArea.name != ''">
+                    and sa.name like concat('%', #{scenicArea.name}, '%')
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <select id="findScenicAreaVo" resultType="com.travel.scenic.entity.ScenicAreaVo">
+        SELECT
+	sa.*, s.img
+    FROM
+	t_scenic_area sa
+    LEFT JOIN t_scenic_spot s ON sa.id = s.area_id
+    </select>
+
+</mapper>
