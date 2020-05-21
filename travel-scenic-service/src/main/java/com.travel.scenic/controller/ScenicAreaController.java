@@ -4,6 +4,7 @@ package com.travel.scenic.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.travel.scenic.entity.ScenicArea;
+import com.travel.scenic.entity.ScenicAreaVo;
 import com.travel.scenic.service.IScenicAreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,13 @@ public class ScenicAreaController {
         Page page = new Page(current, size);
 
         return iScenicAreaService.selectAll(page, scenicArea);
+    }
+
+    @RequestMapping("findScenicAreaVo")
+    public Page<ScenicAreaVo> findScenicAreaVo(@RequestParam(defaultValue = "1") int current, @RequestParam(defaultValue = "10") int size) {
+        Page page = new Page(current, size);
+
+        return iScenicAreaService.findScenicAreaVo(page,null);
     }
 }
 

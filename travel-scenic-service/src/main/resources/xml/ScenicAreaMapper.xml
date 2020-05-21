@@ -43,4 +43,12 @@
         </where>
     </select>
 
+    <select id="findScenicAreaVo" resultType="com.travel.scenic.entity.ScenicAreaVo">
+        SELECT
+	sa.*, s.img
+    FROM
+	t_scenic_area sa
+    LEFT JOIN t_scenic_spot s ON sa.id = s.area_id
+    </select>
+
 </mapper>
