@@ -16,6 +16,8 @@
         <module>travel-blog-service</module>
         <module>travel-scenic-interface</module>
         <module>travel-scenic-service</module>
+        <module>travel-hotel-interface</module>
+        <module>travel-hotel-service</module>
     </modules>
 
     <parent>
