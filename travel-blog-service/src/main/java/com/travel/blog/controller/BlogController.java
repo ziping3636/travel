@@ -42,20 +42,22 @@ public class BlogController {
 
     /**
      * 博客列表
+     *
      * @return
      */
     @RequestMapping("list")
-    public ResultEntity list(Page page){
+    public ResultEntity list(Page page) {
         return ResultEntity.ok(iBlogService.selectPageVo(page));
     }
 
     /**
      * 博客 详情 评论 以及 评论的用户
+     *
      * @param id
      * @return
      */
     @RequestMapping("getBlogById")
-    public Blog getById(Integer id){
+    public Blog getById(Integer id) {
         Blog blogById = iBlogService.getBlogsById(id);
         blogById.setBlogCommentList(iBlogCommentService.getBlogCommentByBlogId(id));
         return blogById;
@@ -63,21 +65,23 @@ public class BlogController {
 
     /**
      * 博客的添加
+     *
      * @param blog
      * @return
      */
     @PostMapping("insert")
-    public boolean insert(@RequestBody Blog blog){
+    public boolean insert(@RequestBody Blog blog) {
         return iBlogService.save(blog);
     }
 
     /**
      * 修改博客
+     *
      * @param blog
      * @return
      */
     @PostMapping("updata")
-    public boolean updata(@RequestBody Blog blog){
+    public boolean updata(@RequestBody Blog blog) {
         return iBlogService.updateById(blog);
     }
 
@@ -85,11 +89,11 @@ public class BlogController {
      * 批量删除
      */
     @RequestMapping("del")
-    public boolean del(Integer ids[]){
-        try{
+    public boolean del(Integer ids[]) {
+        try {
             iBlogService.delByArray(ids);
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
@@ -98,12 +102,12 @@ public class BlogController {
     @RequestMapping("/upload")
     public ResultEntity upload(MultipartFile file) {
         try {
-            if (file!= null &&!file.isEmpty()) {
+            if (file != null && !file.isEmpty()) {
                 String path = "d:\\pic\\";
-                String newFileName = UUID.randomUUID()+ "_" + file.getOriginalFilename();
+                String newFileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
                 File file1 = new File(path, newFileName);
                 file.transferTo(file1);
-                return ResultEntity.ok("http://localhost:91/img/"+newFileName);
+                return ResultEntity.ok("http://localhost:91/img/" + newFileName);
             }
         } catch (IOException e) {
             e.printStackTrace();

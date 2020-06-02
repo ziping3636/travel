@@ -62,17 +62,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         // 从 redis 中查询
         User travelUser = (User) redisTemplate.opsForValue().get(user.getUsername());
         if (travelUser == null) {
-            System.out.println("mysql  -=-");
+            System.out.println("查询  mysql  登录");
             User login = userMapper.login(user);
             // 存入redis 并设置过期时间
             redisTemplate.opsForValue().set(user.getUsername(), login, 30, TimeUnit.MINUTES);
             return login;
         } else {
             if (travelUser.getPassword().equals(user.getPassword())) {
-
+                System.out.println("查询  redis  登录");
                 return travelUser;
             }
-            System.out.println("redis  -=-");
             return null;
         }
     }

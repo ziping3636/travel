@@ -14,7 +14,7 @@ public class CodeGenerator {
         //全局设置
         GlobalConfig gc = new GlobalConfig();
         //设置输出路径
-        gc.setOutputDir(System.getProperty("user.dir") + "/src/main/java");
+        gc.setOutputDir(System.getProperty("user.dir") + "/travel-scenic-service/src/main/java");
         //设置作者
         gc.setAuthor("yjj");
 
@@ -37,7 +37,7 @@ public class CodeGenerator {
         //设置用户名
         dsc.setUsername("root");
         //设置密码
-        dsc.setPassword("yyjj");
+        dsc.setPassword("123");
         //设置代码生成器对象的数据
         mpg.setDataSource(dsc);
 
@@ -53,7 +53,7 @@ public class CodeGenerator {
         //生成的策略
         StrategyConfig strategy = new StrategyConfig();
         //生成那些表
-        strategy.setInclude("t_scenic_area","t_scenic_area_comment","t_scenic_spot");
+        strategy.setInclude("t_district");
         //排除表
         //strategy.setExclude()
         //表的前缀
